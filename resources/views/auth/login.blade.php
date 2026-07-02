@@ -2,232 +2,167 @@
 
     @push('style')
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: "Roboto", sans-serif;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", sans-serif;
+            box-sizing: border-box;
+        }
 
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        width: 100%;
-        background: url('background.avif') no-repeat;
-        background-size: 100%;
-        background-position: center;
-    }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            background: url("{{ asset('images/background.avif') }}") no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
 
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px 100px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 99;
-    }
+        .wrapper {
+            position: relative;
+            width: 400px;
+            height: 440px;
+            background: transparent;
+            border: 2px solid rgb(255, 255, 255, .5);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
 
-    .logo {
-        font-size: 2em;
-        color: #fff;
-        user-select: none;
-    }
+        .wrapper .icon-close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: #162938;
+            font-size: 2em;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom-left-radius: 20px;
+            cursor: pointer;
+            z-index: 1;
+        }
 
-    .navigation a {
-        position: relative;
-        text-decoration: none;
-        margin-left: 40px;
-        font-size: 1.1em;
-        color: #fff;
-        font-weight: 500;
-    }
+        .wrapper .form-box {
+            width: 100%;
+            padding: 40px;
+        }
 
-    .navigation a::after {
-        content: '';
-        position: absolute;
-        background: #fff;
-        border-radius: 5px;
-        height: 3px;
-        width: 100%;
-        left: 0;
-        bottom: -6px;
-        transform: scale(0);
-        transition: .5s;
-        transform-origin: left;
-    }
+        .form-box h2 {
+            text-align: center;
+            color: #162938;
+            font-size: 2em;
+        }
 
-    .navigation a:hover::after {
-        transform: scale(1);
-    }
+        .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            border-bottom: 2px solid #162938;
+            margin: 30px 0;
+        }
 
-    .navigation .btnlogin-popup {
-        width: 130px;
-        height: 50px;
-        background: transparent;
-        border: 2px solid #fff;
-        border-radius: 6px;
-        outline: none;
-        cursor: pointer;
-        font-size: 1.1em;
-        color: #fff;
-        font-weight: 500;
-        margin-left: 40px;
-        transition: .5s;
-    }
+        .input-box label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            font-size: 1em;
+            color: #162938;
+            font-weight: 500;
+            pointer-events: none;
+            transition: .5s;
+        }
 
-    .navigation .btnlogin-popup:hover {
-        background: #fff;
-        color: #162938;
-    }
+        .input-box input:focus~label,
+        .input-box input:valid~label {
+            top: -5px;
+        }
 
-    .wrapper {
-        position: relative;
-        width: 400px;
-        height: 440px;
-        background: transparent;
-        border: 2px solid rgb(255, 255, 255, .5);
-        border-radius: 20px;
-        backdrop-filter: blur(20px);
-        box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
-    }
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            color: #162938;
+            font-weight: 600;
+            padding: 0 35px 0 5px;
+        }
 
-    .wrapper .icon-close {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 40px;
-        height: 40px;
-        background: #162938;
-        font-size: 2em;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom-left-radius: 20px;
-        cursor: pointer;
-        z-index: 1;
-    }
+        .input-box .icon {
+            position: absolute;
+            right: 8px;
+            font-size: 1.2em;
+            color: #162938;
+            line-height: 57px;
+        }
 
-    .wrapper .form-box {
-        width: 100%;
-        padding: 40px;
-    }
+        .remember-forgot {
+            font-size: .9em;
+            color: #162938;
+            font-weight: 500;
+            margin: -15px 0 15px;
+            display: flex;
+            justify-content: space-between;
+        }
 
-    .form-box h2 {
-        text-align: center;
-        color: #162938;
-        font-size: 2em;
-    }
+        .remember-forgot label input {
+            accent-color: #162938;
+            margin-right: 3px;
+        }
 
-    .input-box {
-        position: relative;
-        width: 100%;
-        height: 50px;
-        border-bottom: 2px solid #162938;
-        margin: 30px 0;
-    }
+        .remember-forgot a {
+            color: #162938;
+            text-decoration: none;
+        }
 
-    .input-box label {
-        position: absolute;
-        top: 50%;
-        left: 5px;
-        transform: translateY(-50%);
-        font-size: 1em;
-        color: #162938;
-        font-weight: 500;
-        pointer-events: none;
-        transition: .5s;
-    }
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
 
-    .input-box input:focus~label,
-    .input-box input:valid~label {
-        top: -5px;
-    }
+        .btn {
+            width: 100%;
+            height: 45px;
+            background: #162938;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #fff;
+            font-weight: 500;
+        }
 
-    .input-box input {
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        font-size: 1em;
-        color: #162938;
-        font-weight: 600;
-        padding: 0 35px 0 5px;
-    }
+        .login-register {
+            font-size: .9em;
+            color: #162938;
+            text-align: center;
+            font-weight: 500;
+            margin: 25px 0 10px;
+        }
 
-    .input-box .icon {
-        position: absolute;
-        right: 8px;
-        font-size: 1.2em;
-        color: #162938;
-        line-height: 57px;
-    }
+        .login-register p a {
+            color: #162938;
+            text-decoration: none;
+            font-weight: 600;
+        }
 
-    .remember-forgot {
-        font-size: .9em;
-        color: #162938;
-        font-weight: 500;
-        margin: -15px 0 15px;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .remember-forgot label input {
-        accent-color: #162938;
-        margin-right: 3px;
-    }
-
-    .remember-forgot a {
-        color: #162938;
-        text-decoration: none;
-    }
-
-    .remember-forgot a:hover {
-        text-decoration: underline;
-    }
-
-    .btn {
-        width: 100%;
-        height: 45px;
-        background: #162938;
-        border: none;
-        outline: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1em;
-        color: #fff;
-        font-weight: 500;
-    }
-
-    .login-register {
-        font-size: .9em;
-        color: #162938;
-        text-align: center;
-        font-weight: 500;
-        margin: 25px 0 10px;
-    }
-
-    .login-register p a {
-        color: #162938;
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    .login-register p a:hover {
-        text-decoration: underline;
-    }
+        .login-register p a:hover {
+            text-decoration: underline;
+        }
     </style>
     @endpush
 
@@ -244,18 +179,24 @@
                 @csrf
                 <!-- Email Address -->
                 <div class="input-box">
-
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
                     <x-text-input id="email" class="" type="email" name="email" :value="old('email')" required autofocus
                         autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <label for="">Email</label>
                 </div>
                 <!-- Password -->
                 <div class="input-box">
-
+                    <span class="icon">
+                        <ion-icon name="lock"></ion-icon>
+                    </span>
                     <x-text-input id="password" class="" type="password" name="password" required
                         autocomplete="current-password" />
 
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    <label for="">Password</label>
                 </div>
                 <!-- Remember Me -->
                 <div class="remember-forgot">
